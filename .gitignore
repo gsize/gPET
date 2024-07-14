@@ -1,5 +1,6 @@
 # Ignore all files in /output
 output/*
+build/
 
 # except for readOutput.m
 !readOutput.m
