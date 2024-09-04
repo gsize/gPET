@@ -374,7 +374,7 @@ void orderevents(int* counts,Event* events_d)
     int start=0;
     for(int i=1; i<counts[0];)
     {
-        while(events[i].siten==events[start].siten&&(i<counts[0]))
+        while( i<counts[0] && events[i].siten==events[start].siten)
             i++;
         if(i>start+1) quicksort(events,start,i,3);
         start=i;
