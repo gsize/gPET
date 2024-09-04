@@ -748,6 +748,8 @@ int __device__ adder(int* counts_d, Event* events_d, Event event)
             return 1;
         }
     }
+	if(counts_d[0]>=counts_d[1])
+		return 0;
     //no recorded event inside the the same crystal
     events_d[counts_d[0]]=event;
     counts_d[0]++;
@@ -758,7 +760,11 @@ int __device__ readout(int* counts_d, Event* events_d,int depth, int policy)
     //this is for the readout part in digitizer
     //depth means the readout level. 0,1,2,3 represents world,panel,module,cry
     //policy 0,1 for winnertakeall and energy centroid   
-    if(depth==3) return 1;
+    if(depth==3)
+	{
+        counts_d[1]=counts_d[0];
+		return 1;
+	}
     if(policy==1) depth = 2;
     //the readout part
     switch(depth)
